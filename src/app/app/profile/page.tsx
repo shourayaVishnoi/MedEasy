@@ -42,7 +42,7 @@ export default function ProfilePage() {
         {state.profiles.map((p) => (
           <Card key={p.id} as="article" className={`p-4 ${p.id === profileId ? "ring-2 ring-pine/40" : ""}`}>
             <div className="flex items-center gap-3">
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-pine-soft font-semibold text-pine">{p.displayName.slice(0, 1) || "?"}</span>
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-pine-soft font-semibold text-accent">{p.displayName.slice(0, 1) || "?"}</span>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold">{p.displayName}</p>
                 <p className="text-sm capitalize text-muted">{p.relationship === "self" ? "You" : p.relationship}</p>

@@ -84,7 +84,7 @@ export function parseRxLine(raw: string): ParsedRxItem | null {
   const doseMatch = afterStrength.match(/\b(\d+(?:\.\d+)?|½|half|one|two|three)\s*(tablets?|tabs?|capsules?|caps?|ml|puffs?|drops?|units?|sachets?)\b/i);
   const dose = doseMatch ? doseMatch[0] : undefined;
   if (!dose) {
-    reviewReasons.push("Dose not stated – HealthOS will not guess it");
+    reviewReasons.push("Dose not stated – MedEasy will not guess it");
     confidence -= 0.3;
   }
 

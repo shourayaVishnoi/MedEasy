@@ -26,7 +26,7 @@ function icsFor(a: Appointment) {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//HealthOS//EN",
+    "PRODID:-//MedEasy//EN",
     "BEGIN:VEVENT",
     `UID:${a.id}@healthos`,
     `DTSTAMP:${dt(new Date())}`,
@@ -60,7 +60,7 @@ function Appointments() {
     <Card as="article" id={`appt-${a.id}`} className="scroll-mt-24 p-4 sm:p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex gap-3">
-          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-pine-soft text-center text-pine">
+          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-pine-soft text-center text-accent">
             <span className="text-[0.7rem] font-semibold uppercase leading-none">{new Date(a.startsAt).toLocaleString(state.settings.locale, { month: "short", timeZone: tz })}</span>
             <span className="text-xl font-semibold leading-none">{new Date(a.startsAt).toLocaleString(state.settings.locale, { day: "numeric", timeZone: tz })}</span>
           </div>
@@ -74,7 +74,7 @@ function Appointments() {
               {a.location && (
                 <span className="inline-flex items-center gap-1">
                   <MapPin className="h-3.5 w-3.5" aria-hidden />
-                  {/^https?:\/\//.test(a.location) ? <a href={a.location} className="text-pine underline" rel="noreferrer noopener" target="_blank">Join link</a> : a.location}
+                  {/^https?:\/\//.test(a.location) ? <a href={a.location} className="text-accent underline" rel="noreferrer noopener" target="_blank">Join link</a> : a.location}
                 </span>
               )}
             </p>
@@ -129,7 +129,7 @@ function Appointments() {
               <ul className="text-ink-2">
                 {a.relatedDocumentIds.map((d) => (
                   <li key={d}>
-                    <Link href={`/app/documents/${d}`} className="text-pine underline underline-offset-2">
+                    <Link href={`/app/documents/${d}`} className="text-accent underline underline-offset-2">
                       {docTitle(d) ?? "Deleted record"}
                     </Link>
                   </li>

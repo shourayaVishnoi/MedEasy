@@ -60,7 +60,7 @@ export function describeObservation(o: LabObservation, detailed: boolean): Expla
   const uncertain = o.verification === "extracted" && o.reviewReasons.length > 0;
   const parts = [`${o.testName}: ${valueWithUnit(o)}.`];
   if (o.refText) parts.push(`The laboratory's reference interval on this report is ${o.refText}${o.unit ? ` ${o.unit}` : ""}.`);
-  else parts.push("No reference interval is printed for this test, so HealthOS does not supply one.");
+  else parts.push("No reference interval is printed for this test, so MedEasy does not supply one.");
   if (o.flag) parts.push(`The laboratory flagged it as ${o.flag === "H" ? "high (H)" : "low (L)"}.`);
   else if (o.refText) {
     const rel = relationToInterval(o);
@@ -75,7 +75,7 @@ export function describeObservation(o: LabObservation, detailed: boolean): Expla
 
 function generalFor(o: LabObservation, detailed: boolean): ExplanationItem[] {
   const info = TEST_GLOSSARY[o.testKey];
-  if (!info) return [{ text: `HealthOS has no reviewed background information for "${o.testName}" yet.` }];
+  if (!info) return [{ text: `MedEasy has no reviewed background information for "${o.testName}" yet.` }];
   const items = [{ text: info.measures }];
   if (detailed) items.push({ text: info.cannotEstablish });
   return items;
@@ -115,7 +115,7 @@ export function explainReport(
         text:
           doc.status === "failed"
             ? "Text could not be extracted from this document, so there is nothing to explain yet. Your original file is safe; you can retry processing or enter results manually."
-            : "No test results were found in this document's text. HealthOS will not guess at its contents.",
+            : "No test results were found in this document's text. MedEasy will not guess at its contents.",
       },
     ]);
     return { mode, sections, engine: "built-in" };
@@ -140,7 +140,7 @@ export function explainReport(
       add("general", general);
       add("unknown", [
         { text: "Whether these results mean anything for your health on their own. Results are interpreted together with your history, symptoms, medicines and other tests." },
-        ...(detailed ? [{ text: "Reference intervals depend on the laboratory, its methods, and factors such as age, sex and pregnancy. HealthOS keeps the interval printed on this report." }] : []),
+        ...(detailed ? [{ text: "Reference intervals depend on the laboratory, its methods, and factors such as age, sex and pregnancy. MedEasy keeps the interval printed on this report." }] : []),
       ]);
       add("questions", questionsFor(obs).slice(0, detailed ? 6 : 3));
       break;

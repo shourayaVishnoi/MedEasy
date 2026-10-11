@@ -62,7 +62,7 @@ export default function Assistant() {
       <div className="space-y-6" aria-live="polite">
         {turns.map((t) => (
           <div key={t.id} className="space-y-3">
-            <div className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-pine px-4 py-2.5 text-white dark:text-[#0f1714]">{t.q}</div>
+            <div className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-pine px-4 py-2.5 text-on-pine">{t.q}</div>
             <AnswerView a={t.a} />
           </div>
         ))}
@@ -118,7 +118,7 @@ function AnswerView({ a }: { a: AssistantAnswer }) {
             <li key={k}>
               {i.text}
               {i.href && (
-                <Link href={i.href} className="ml-1.5 inline-flex rounded-md bg-sunken px-1.5 py-0.5 align-middle text-xs font-medium text-pine hover:underline">
+                <Link href={i.href} className="ml-1.5 inline-flex rounded-md bg-sunken px-1.5 py-0.5 align-middle text-xs font-medium text-accent hover:underline">
                   Source: {i.label ?? "record"}
                 </Link>
               )}
@@ -137,9 +137,9 @@ function AnswerView({ a }: { a: AssistantAnswer }) {
           </span>
         </Callout>
       )}
-      {block("From your records", <FileSearch className="h-4 w-4 text-pine" aria-hidden />, a.documented, "border-pine/25")}
-      {block("General information", <BookOpen className="h-4 w-4 text-pine" aria-hidden />, a.general)}
-      {block("Not known from your records", <CircleHelp className="h-4 w-4 text-pine" aria-hidden />, a.unknown, "border-dashed border-line")}
+      {block("From your records", <FileSearch className="h-4 w-4 text-accent" aria-hidden />, a.documented, "border-pine/25")}
+      {block("General information", <BookOpen className="h-4 w-4 text-accent" aria-hidden />, a.general)}
+      {block("Not known from your records", <CircleHelp className="h-4 w-4 text-accent" aria-hidden />, a.unknown, "border-dashed border-line")}
       <Badge tone="neutral" icon={false}>
         Built-in engine · not medical advice
       </Badge>

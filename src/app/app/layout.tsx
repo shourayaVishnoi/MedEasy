@@ -92,14 +92,14 @@ function NoWorkspace() {
       <h1 className="mt-8 font-display text-4xl tracking-tight">Choose how to start</h1>
       <p className="mt-2 text-ink-2">
         Live accounts need the deployment’s authentication and database to be configured.{" "}
-        <Link href="/auth/sign-in" className="font-medium text-pine underline underline-offset-2">
+        <Link href="/auth/sign-in" className="font-medium text-accent underline underline-offset-2">
           Sign in
         </Link>{" "}
         if your deployment is set up. Until then, you can explore in this browser.
       </p>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         <Card className="p-5">
-          <FlaskConical className="h-6 w-6 text-pine" aria-hidden />
+          <FlaskConical className="h-6 w-6 text-accent" aria-hidden />
           <h2 className="mt-3 font-semibold">Explore with sample data</h2>
           <p className="mt-1 text-sm text-muted">Fictional people, reports and medicines, so you can see every feature without sharing anything real.</p>
           <Button className="mt-5 w-full" onClick={startDemo}>
@@ -107,7 +107,7 @@ function NoWorkspace() {
           </Button>
         </Card>
         <Card className="p-5">
-          <FolderLock className="h-6 w-6 text-pine" aria-hidden />
+          <FolderLock className="h-6 w-6 text-accent" aria-hidden />
           <h2 className="mt-3 font-semibold">Start empty in this browser</h2>
           <p className="mt-1 text-sm text-muted">Try it with your own files. They stay only in this browser’s storage and are not backed up or synced.</p>
           <form

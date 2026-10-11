@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "Sign in" };
 
 export default function SignIn() {
   return (
-    <AuthShell title="Welcome back" subtitle="Sign in with your phone number and HealthOS password, or with Google.">
+    <AuthShell title="Welcome back" subtitle="Sign in with your phone number and MedEasy password, or with Google.">
       <SignInFlow />
     </AuthShell>
   );

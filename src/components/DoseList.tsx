@@ -33,10 +33,11 @@ export function DoseList({ state, occurrences, now, compact }: { state: AppState
           const st = occurrenceState(o, log, now);
           const snoozeUntil = snoozed.get(o.key);
           return (
-            <li key={o.key} className={cx("flex items-center gap-3 rounded-2xl border px-3.5 py-3 transition", st === "due" ? "border-pine/40 bg-pine-soft/40" : "border-line bg-surface")}>
-              <span className="w-11 shrink-0 sm:w-14 text-sm font-semibold tabular-nums text-ink-2">{formatClock(o.time, state.settings.locale)}</span>
+            <li key={o.key} className={cx("flex items-center gap-3 rounded-lg border px-3.5 py-3 transition", st === "due" ? "border-pine/60 bg-pine/[0.08] shadow-[inset_3px_0_0_var(--color-pine)]" : "border-line bg-raised/60 hover:border-line-strong")}>
+              <span className="hidden w-14 shrink-0 font-display text-sm font-bold tabular-nums text-ink-2 sm:block">{formatClock(o.time, state.settings.locale)}</span>
               <div className="min-w-0 flex-1">
-                <p className="line-clamp-2 font-medium leading-snug sm:truncate">
+                <p className="mb-0.5 font-display text-xs font-bold tabular-nums text-accent sm:hidden">{formatClock(o.time, state.settings.locale)}</p>
+                <p className="line-clamp-2 font-semibold leading-snug sm:truncate">
                   {med.name}
                   {med.strength && <span className="font-normal text-muted"> {med.strength}</span>}
                 </p>
@@ -87,7 +88,7 @@ function DoseModal({ occ, med, log, onClose, state }: { occ: DoseOccurrence; med
   return (
     <Modal open onClose={onClose} title={`${med.name} · ${formatClock(occ.time, state.settings.locale)}`}>
       <div className="space-y-5">
-        <div className="rounded-2xl bg-sunken px-4 py-3 text-sm">
+        <div className="rounded-lg bg-raised px-4 py-3 text-sm">
           <p className="font-medium">Instructions on record</p>
           <p className="mt-1 text-ink-2">
             {med.dose}
@@ -130,7 +131,7 @@ function DoseModal({ occ, med, log, onClose, state }: { occ: DoseOccurrence; med
         </div>
 
         <Callout tone="info" title="If you missed a dose">
-          HealthOS doesn’t calculate replacement doses and won’t suggest doubling the next one. Follow your medicine’s instructions or ask your pharmacist or prescriber.
+          MedEasy doesn’t calculate replacement doses and won’t suggest doubling the next one. Follow your medicine’s instructions or ask your pharmacist or prescriber.
         </Callout>
       </div>
     </Modal>

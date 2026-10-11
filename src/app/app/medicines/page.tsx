@@ -41,7 +41,7 @@ function Medicines() {
     <div>
       <PageHeader
         title="Medicines"
-        subtitle="Schedules come only from details you’ve confirmed. HealthOS never starts, stops or changes a medicine."
+        subtitle="Schedules come only from details you’ve confirmed. MedEasy never starts, stops or changes a medicine."
         actions={
           <>
             <ButtonLink href="/app/documents/upload?type=prescription" variant="secondary">
@@ -141,7 +141,7 @@ function Medicines() {
                     <dt className="text-muted">Source</dt>
                     <dd>
                       {rx?.documentId ? (
-                        <Link href={`/app/documents/${rx.documentId}`} className="text-pine underline underline-offset-2">
+                        <Link href={`/app/documents/${rx.documentId}`} className="text-accent underline underline-offset-2">
                           Prescription{rx.prescriber ? ` from ${rx.prescriber}` : ""}
                         </Link>
                       ) : (
@@ -196,7 +196,7 @@ function Medicines() {
           toast("Medicine removed");
         }}
       >
-        This removes the medicine and its future reminders from HealthOS. Your past dose history is kept. It doesn’t change your prescription. Only stop a medicine on your clinician’s advice.
+        This removes the medicine and its future reminders from MedEasy. Your past dose history is kept. It doesn’t change your prescription. Only stop a medicine on your clinician’s advice.
       </ConfirmDialog>
     </div>
   );
@@ -216,7 +216,7 @@ function Medicines() {
       <Card className="overflow-hidden">
         <div className="border-b border-line px-5 py-4">
           <h2 className="font-semibold">Last 14 days</h2>
-          <p className="text-sm text-muted">“Not recorded” means no one logged this dose. HealthOS doesn’t assume it was taken or missed.</p>
+          <p className="text-sm text-muted">“Not recorded” means no one logged this dose. MedEasy doesn’t assume it was taken or missed.</p>
         </div>
         {rows.length === 0 ? (
           <p className="p-5 text-sm text-muted">No dose history yet.</p>
@@ -251,7 +251,7 @@ function Reminders() {
     <div className="grid grid-cols-1 [&>*]:min-w-0 gap-4 lg:grid-cols-2">
       <Card className="p-5">
         <h2 className="flex items-center gap-2 font-semibold">
-          <BellRing className="h-5 w-5 text-pine" aria-hidden /> Browser notifications
+          <BellRing className="h-5 w-5 text-accent" aria-hidden /> Browser notifications
         </h2>
         <p className="mt-2 text-sm text-ink-2">
           Status:{" "}
@@ -271,8 +271,8 @@ function Reminders() {
               variant="secondary"
               onClick={async () => {
                 const reg = await navigator.serviceWorker?.getRegistration();
-                if (reg) await reg.showNotification("HealthOS test reminder", { body: "This is a test. Real reminders come from the server.", icon: "/icon.svg" });
-                else new Notification("HealthOS test reminder", { body: "This is a test." });
+                if (reg) await reg.showNotification("MedEasy test reminder", { body: "This is a test. Real reminders come from the server.", icon: "/icon.svg" });
+                else new Notification("MedEasy test reminder", { body: "This is a test." });
               }}
             >
               Send a test
@@ -291,7 +291,7 @@ function Reminders() {
           <li>• Failed deliveries are kept and shown, never silently dropped.</li>
           <li>
             • Quiet hours: {s.quietHours ? `${s.quietHours.start}–${s.quietHours.end} (reminders are held, not discarded)` : "off"} · snooze {s.snoozeMinutes} min ·{" "}
-            <Link href="/app/settings" className="text-pine underline">
+            <Link href="/app/settings" className="text-accent underline">
               change
             </Link>
           </li>

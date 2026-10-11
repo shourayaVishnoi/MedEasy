@@ -37,7 +37,7 @@ export default function Compare() {
             <ul className="space-y-1">
               {series.map((s) => (
                 <li key={s.key}>
-                  <button onClick={() => setSelected(s.key)} aria-current={current?.key === s.key} className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm ${current?.key === s.key ? "bg-pine-soft font-medium text-pine" : "hover:bg-sunken"}`}>
+                  <button onClick={() => setSelected(s.key)} aria-current={current?.key === s.key} className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm ${current?.key === s.key ? "bg-pine-soft font-medium text-accent" : "hover:bg-sunken"}`}>
                     <span className="truncate">
                       {s.testName} <span className="text-muted">({s.unit})</span>
                     </span>
@@ -69,13 +69,13 @@ export default function Compare() {
                     <li key={i.testName}>
                       <p className="font-medium">{i.testName}</p>
                       <p className="text-ink-2">
-                        Recorded in {i.units.join(" and ")}. These are shown separately because HealthOS doesn’t convert units without a validated conversion. Your clinician can tell you how they relate.
+                        Recorded in {i.units.join(" and ")}. These are shown separately because MedEasy doesn’t convert units without a validated conversion. Your clinician can tell you how they relate.
                       </p>
                       <ul className="mt-1 text-muted">
                         {i.observations.map((o) => (
                           <li key={o.id}>
                             {formatDate(o.observedOn, ws.state.settings.locale)}: {o.valueText} {o.unit ?? "(no unit)"} –{" "}
-                            <Link href={`/app/documents/${o.documentId}`} className="text-pine underline">
+                            <Link href={`/app/documents/${o.documentId}`} className="text-accent underline">
                               {docTitle(o.documentId)}
                             </Link>
                           </li>
@@ -173,7 +173,7 @@ function SeriesView({ s, docTitle, locale }: { s: ComparableSeries; docTitle: (i
                   <td className="py-2.5 pr-3 text-ink-2">{p.refText ?? "Not printed"}</td>
                   <td className="py-2.5 pr-3 text-ink-2 tabular-nums">{prev && prev.value !== null && p.value !== null ? `${p.value - prev.value > 0 ? "+" : ""}${Math.round((p.value - prev.value) * 100) / 100}` : "—"}</td>
                   <td className="py-2.5">
-                    <Link href={`/app/documents/${p.documentId}#obs-${p.id}`} className="text-pine underline underline-offset-2">
+                    <Link href={`/app/documents/${p.documentId}#obs-${p.id}`} className="text-accent underline underline-offset-2">
                       {docTitle(p.documentId)}
                     </Link>
                   </td>

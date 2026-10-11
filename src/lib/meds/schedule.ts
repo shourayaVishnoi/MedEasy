@@ -50,7 +50,7 @@ export function occurrencesBetween(medicines: Medicine[], from: ISODate, to: ISO
 }
 
 /**
- * State of a dose. An unrecorded past dose is "not_recorded": HealthOS never
+ * State of a dose. An unrecorded past dose is "not_recorded": MedEasy never
  * assumes it was taken or missed.
  */
 export function occurrenceState(occ: DoseOccurrence, log: DoseLog | undefined, now: Date, dueWindowMinutes = 60): OccurrenceState {
@@ -72,7 +72,7 @@ export const STATE_LABEL: Record<OccurrenceState, string> = {
 
 export function validateSchedule(s: Partial<MedicationSchedule>): string[] {
   const errors: string[] = [];
-  if (!s.times || s.times.length === 0) errors.push("Add at least one time. HealthOS does not pick dose times for you.");
+  if (!s.times || s.times.length === 0) errors.push("Add at least one time. MedEasy does not pick dose times for you.");
   for (const t of s.times ?? []) if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(t)) errors.push(`"${t}" is not a valid time.`);
   if (s.times && new Set(s.times).size !== s.times.length) errors.push("The same time is listed twice.");
   if (!s.startDate) errors.push("Choose a start date.");

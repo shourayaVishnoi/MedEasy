@@ -1,57 +1,47 @@
 @import "tailwindcss";
 
-@custom-variant dark (@media (prefers-color-scheme: dark));
+/* MedEasy is dark-only: the `dark:` variant always applies. */
+@custom-variant dark (&:where(html, html *));
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-brand: var(--font-bebas), Impact, "Arial Narrow", sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --color-paper: #f6f4ef;
-  --color-surface: #ffffff;
-  --color-sunken: #efece5;
-  --color-line: #e3ded3;
-  --color-ink: #1b2622;
-  --color-ink-2: #44524d;
-  --color-muted: #66736e;
+  --color-paper: #000000;
+  --color-surface: #141414;
+  --color-raised: #1f1f1f;
+  --color-sunken: #0b0b0b;
+  --color-line: #262626;
+  --color-line-strong: #3a3a3a;
+  --color-ink: #ffffff;
+  --color-ink-2: #d2d2d2;
+  --color-muted: #8c8c8c;
 
-  --color-pine: #1f5c4a;
-  --color-pine-strong: #174536;
-  --color-pine-soft: #e2eee8;
+  /* "pine" is the accent token name used across the app; in MedEasy it is cinema red. */
+  --color-pine: #e50914;
+  --color-pine-strong: #ff1f2c;
+  --color-pine-soft: #2a0a0c;
+  --color-on-pine: #ffffff;
+  --color-accent: #ff4d57;
+  --color-gold: #f5c518;
 
-  --color-ok: #1f7a46;
-  --color-ok-soft: #e4f3ea;
-  --color-warn: #8a4f06;
-  --color-warn-soft: #fcf1dc;
-  --color-danger: #a8261b;
-  --color-danger-soft: #fbe9e6;
-  --color-info: #2f5a7a;
-  --color-info-soft: #e5eef5;
+  --color-ok: #46d369;
+  --color-ok-soft: #0d2a1b;
+  --color-warn: #ffc24d;
+  --color-warn-soft: #2e2210;
+  --color-danger: #ff8a3d;
+  --color-danger-soft: #331a0b;
+  --color-info: #6cb6ff;
+  --color-info-soft: #0f2236;
 
-  --radius-card: 1.125rem;
-  --shadow-card: 0 1px 2px rgb(27 38 34 / 0.04), 0 4px 16px -6px rgb(27 38 34 / 0.08);
+  --radius-card: 0.75rem;
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 12px 32px -16px rgb(0 0 0 / 0.8);
+  --shadow-glow: 0 8px 24px -10px rgb(229 9 20 / 0.7);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-paper: #121816;
-    --color-surface: #1a2220;
-    --color-sunken: #151c1a;
-    --color-line: #2b3633;
-    --color-ink: #e8eeeb;
-    --color-ink-2: #c1ccc7;
-    --color-muted: #94a39d;
-    --color-pine: #7cc4a8;
-    --color-pine-strong: #9bd6be;
-    --color-pine-soft: #1f3a31;
-    --color-ok: #7fd1a0;
-    --color-ok-soft: #173326;
-    --color-warn: #f0c27a;
-    --color-warn-soft: #3a2c12;
-    --color-danger: #f2a199;
-    --color-danger-soft: #3d1c18;
-    --color-info: #9cc2e0;
-    --color-info-soft: #1a2c3a;
-  }
+:root {
+  color-scheme: dark;
 }
 
 html {
@@ -93,6 +83,22 @@ body {
   background-size: 800px 100%;
   animation: shimmer 1.4s infinite linear;
   border-radius: 0.5rem;
+}
+
+.text-glow { text-shadow: 0 2px 24px rgb(0 0 0 / 0.6); }
+::selection { background: rgb(229 9 20 / 0.45); }
+/* Netflix-style horizontal rows */
+.row-scroll { display: grid; grid-auto-flow: column; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 0.5rem; }
+.row-scroll::-webkit-scrollbar { display: none; }
+.row-scroll > * { scroll-snap-align: start; }
+.tile { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s, border-color 0.25s; }
+@media (hover: hover) { .tile:hover { transform: scale(1.04); z-index: 2; box-shadow: 0 18px 40px -12px rgb(0 0 0 / 0.9); border-color: var(--color-line-strong); } }
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%);
 }
 
 @media print {

@@ -55,7 +55,7 @@ export function ExplanationView({ doc, observations, onCite, language }: { doc: 
     <div className="space-y-4">
       <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-label="Explanation mode">
         {EXPLAIN_MODES.map((m) => (
-          <button key={m.id} role="radio" aria-checked={mode === m.id} onClick={() => { setMode(m.id); setAi(null); }} className={cx("rounded-full border px-3 py-1.5 text-sm font-medium transition", mode === m.id ? "border-pine bg-pine text-white dark:text-[#0f1714]" : "border-line bg-surface text-ink-2 hover:bg-sunken")}>
+          <button key={m.id} role="radio" aria-checked={mode === m.id} onClick={() => { setMode(m.id); setAi(null); }} className={cx("rounded-full border px-3 py-1.5 text-sm font-medium transition", mode === m.id ? "border-pine bg-pine text-on-pine" : "border-line bg-surface text-ink-2 hover:bg-sunken")}>
             {m.label}
           </button>
         ))}
@@ -81,7 +81,7 @@ export function ExplanationView({ doc, observations, onCite, language }: { doc: 
         {exp.sections.map((s, i) => (
           <section key={i} className={cx("rounded-2xl border bg-surface p-4", SECTION_STYLE[s.kind].className)} aria-label={s.heading}>
             <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <span className="text-pine">{SECTION_STYLE[s.kind].icon}</span>
+              <span className="text-accent">{SECTION_STYLE[s.kind].icon}</span>
               {s.heading}
               {s.kind === "general" && <Badge tone="neutral" icon={false}>Not specific to you</Badge>}
             </h3>
@@ -91,7 +91,7 @@ export function ExplanationView({ doc, observations, onCite, language }: { doc: 
                   {it.uncertain && <Badge tone="warn" className="mr-1.5 align-middle">Unverified</Badge>}
                   {it.text}
                   {it.citation?.line && (
-                    <button onClick={() => onCite(it.citation?.line)} className="ml-1.5 inline-flex items-center gap-1 rounded-md bg-sunken px-1.5 py-0.5 align-middle text-xs font-medium text-pine hover:underline">
+                    <button onClick={() => onCite(it.citation?.line)} className="ml-1.5 inline-flex items-center gap-1 rounded-md bg-sunken px-1.5 py-0.5 align-middle text-xs font-medium text-accent hover:underline">
                       Source: page {it.citation.page ?? 1}
                     </button>
                   )}
@@ -105,7 +105,7 @@ export function ExplanationView({ doc, observations, onCite, language }: { doc: 
       <div className="rounded-2xl border border-line bg-sunken/60 p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-ink-2">
-            <Sparkles className="mr-1 inline h-4 w-4 text-pine" aria-hidden /> The explanation above uses HealthOS’s built-in, rule-based engine. You can also ask the configured AI provider.
+            <Sparkles className="mr-1 inline h-4 w-4 text-accent" aria-hidden /> The explanation above uses MedEasy’s built-in, rule-based engine. You can also ask the configured AI provider.
           </p>
           <Button size="sm" variant="secondary" onClick={askProvider} disabled={aiState === "loading"}>
             {aiState === "loading" && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Ask AI provider
@@ -235,7 +235,7 @@ function CorrectForm({ o, onDone }: { o: LabObservation; onDone: () => void }) {
           Cancel
         </Button>
       </div>
-      <p className="text-xs text-muted sm:col-span-4">Copy the values exactly as printed on the original report. HealthOS keeps the extracted version in the history.</p>
+      <p className="text-xs text-muted sm:col-span-4">Copy the values exactly as printed on the original report. MedEasy keeps the extracted version in the history.</p>
       <Callout tone="neutral" className="sm:col-span-4">Only correct what the document says. Don’t enter values from memory or another report.</Callout>
     </form>
   );

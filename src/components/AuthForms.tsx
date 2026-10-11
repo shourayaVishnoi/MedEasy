@@ -98,7 +98,7 @@ export function GoogleButton({ next }: { next: string }) {
   );
 }
 
-/** Phone OTP verification followed by creating a HealthOS password. */
+/** Phone OTP verification followed by creating a MedEasy password. */
 export function SignUpFlow() {
   const router = useRouter();
   const [step, setStep] = useState<"phone" | "code" | "password">("phone");
@@ -166,7 +166,7 @@ export function SignUpFlow() {
             <span className="h-px flex-1 bg-line" /> or <span className="h-px flex-1 bg-line" />
           </div>
           <GoogleButton next="/auth/sign-up?step=password" />
-          <p className="text-xs text-muted">With Google, HealthOS never sees your Google password. You’ll set a separate HealthOS password next.</p>
+          <p className="text-xs text-muted">With Google, MedEasy never sees your Google password. You’ll set a separate MedEasy password next.</p>
         </>
       )}
       {step === "code" && (
@@ -185,7 +185,7 @@ export function SignUpFlow() {
       )}
       {step === "password" && (
         <>
-          <p className="text-sm text-ink-2">Create a HealthOS password so you can also sign in without a code.</p>
+          <p className="text-sm text-ink-2">Create a MedEasy password so you can also sign in without a code.</p>
           <Field label="New password" hint={strength.problems[0] ?? "Strong password"}>{(id, d) => <Input id={id} aria-describedby={d} type="password" autoComplete="new-password" value={pw} onChange={(e) => setPw(e.target.value)} />}</Field>
           <div className="flex gap-1" aria-hidden>
             {[0, 1, 2, 3].map((k) => (
@@ -241,10 +241,10 @@ export function SignInFlow() {
         {busy && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />} Sign in
       </Button>
       <div className="flex justify-between text-sm">
-        <Link href="/auth/reset" className="font-medium text-pine underline underline-offset-2">
+        <Link href="/auth/reset" className="font-medium text-accent underline underline-offset-2">
           Forgot password?
         </Link>
-        <Link href="/auth/sign-up" className="font-medium text-pine underline underline-offset-2">
+        <Link href="/auth/sign-up" className="font-medium text-accent underline underline-offset-2">
           Create an account
         </Link>
       </div>

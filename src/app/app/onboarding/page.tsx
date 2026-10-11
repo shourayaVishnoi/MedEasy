@@ -35,7 +35,7 @@ export default function Onboarding() {
   }
 
   const panels = [
-    <Panel key="w" icon={<HeartPulse />} title="Welcome to HealthOS" body="A calm place for your medical records, medicines and appointments, with plain-language explanations of your reports. It takes about a minute to set up, and you can skip anything." />,
+    <Panel key="w" icon={<HeartPulse />} title="Welcome to MedEasy" body="A calm place for your medical records, medicines and appointments, with plain-language explanations of your reports. It takes about a minute to set up, and you can skip anything." />,
     <Panel key="n" icon={<Sparkles />} title="What should we call you?">
       <div className="grid grid-cols-1 [&>*]:min-w-0 gap-3 sm:grid-cols-2">
         <Field label="First name">{(id) => <Input id={id} value={name} onChange={(e) => setName(e.target.value)} autoComplete="given-name" />}</Field>
@@ -68,20 +68,20 @@ export default function Onboarding() {
         </label>
       </div>
     </Panel>,
-    <Panel key="h" icon={<HeartPulse />} title="Start a health profile (optional)" body="Only add what’s useful to you. You can always use HealthOS without sharing this.">
+    <Panel key="h" icon={<HeartPulse />} title="Start a health profile (optional)" body="Only add what’s useful to you. You can always use MedEasy without sharing this.">
       <div className="grid grid-cols-1 [&>*]:min-w-0 gap-3 sm:grid-cols-2">
         <Field label="Date of birth">{(id) => <Input id={id} type="date" value={dob} onChange={(e) => setDob(e.target.value)} />}</Field>
         <Field label="Any allergy to note?">{(id) => <Input id={id} value={allergy} onChange={(e) => setAllergy(e.target.value)} placeholder="Optional" />}</Field>
       </div>
     </Panel>,
     <Panel key="p" icon={<Lock />} title="Your information stays yours" body={`Records are private by default. Only people you invite can see a profile, and you can revoke access at any time. Your medical data is never used for advertising or to train AI models. ${ws.state.mode === "cloud" ? "Your records are stored in your private account and protected by per-profile access rules." : "In this demo, everything stays in this browser."}`} />,
-    <Panel key="f" icon={<FileUp />} title="Add your first record" body="Upload a lab report or prescription. The original is stored unchanged, and anything HealthOS isn’t sure about is flagged for you to check.">
+    <Panel key="f" icon={<FileUp />} title="Add your first record" body="Upload a lab report or prescription. The original is stored unchanged, and anything MedEasy isn’t sure about is flagged for you to check.">
       <Button variant="secondary" onClick={() => finish("/app/documents/upload")}>
         Upload now
       </Button>
     </Panel>,
     <Panel key="e" icon={<Sparkles />} title="Understanding your reports" body="Each explanation shows what your report says (with the exact line it came from), general background, and what the report alone can’t tell you, plus questions you could ask your doctor. It never diagnoses." />,
-    <Panel key="m" icon={<Pill />} title="How medicine schedules work" body="After you check a prescription against the original, you choose the times you take each medicine. HealthOS then reminds you and keeps a history of taken, skipped and unconfirmed doses. It never changes a dose or guesses missing instructions." />,
+    <Panel key="m" icon={<Pill />} title="How medicine schedules work" body="After you check a prescription against the original, you choose the times you take each medicine. MedEasy then reminds you and keeps a history of taken, skipped and unconfirmed doses. It never changes a dose or guesses missing instructions." />,
   ];
 
   return (
@@ -122,7 +122,7 @@ export default function Onboarding() {
 function Panel({ icon, title, body, children }: { icon: React.ReactNode; title: string; body?: string; children?: React.ReactNode }) {
   return (
     <section>
-      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-pine-soft text-pine [&>svg]:h-6 [&>svg]:w-6">{icon}</span>
+      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-pine-soft text-accent [&>svg]:h-6 [&>svg]:w-6">{icon}</span>
       <h1 className="mt-5 font-display text-3xl tracking-tight">{title}</h1>
       {body && <p className="mt-3 text-[1.02rem] leading-relaxed text-ink-2">{body}</p>}
       {children && <div className="mt-6">{children}</div>}

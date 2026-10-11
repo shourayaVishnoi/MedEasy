@@ -57,7 +57,7 @@ export function answerQuestion(state: AppState, profileId: ID, question: string,
           label: "Medicine schedule",
         });
     else a.unknown.push({ text: "No medicines are recorded as active for this profile." });
-    a.unknown.push({ text: "This list only includes medicines entered in HealthOS. It may not match everything you actually take." });
+    a.unknown.push({ text: "This list only includes medicines entered in MedEasy. It may not match everything you actually take." });
   }
   if (a.boundary) {
     const named = meds.filter((m) => lower.includes(m.name.toLowerCase()));
@@ -92,7 +92,7 @@ export function answerQuestion(state: AppState, profileId: ID, question: string,
     for (const o of series) byDate.set(o.observedOn ?? "?", [...(byDate.get(o.observedOn ?? "?") ?? []), o]);
     for (const [date, same] of byDate)
       if (same.length > 1 && new Set(same.map((s) => s.valueText)).size > 1)
-        a.documented.push({ text: `Your records disagree for ${same[0].testName} on ${date}: ${same.map((s) => `${s.valueText} ${s.unit ?? ""} in "${docTitle(s.documentId)}"`).join(" vs ")}. HealthOS shows both rather than choosing one.` });
+        a.documented.push({ text: `Your records disagree for ${same[0].testName} on ${date}: ${same.map((s) => `${s.valueText} ${s.unit ?? ""} in "${docTitle(s.documentId)}"`).join(" vs ")}. MedEasy shows both rather than choosing one.` });
     const comparable = series.filter((s) => normalizeUnit(s.unit) === normalizeUnit(series.at(-1)!.unit));
     if (comparable.length > 1) a.documented.push({ text: describeChange(comparable.at(-2)!, comparable.at(-1)!) });
     if (new Set(series.map((s) => normalizeUnit(s.unit))).size > 1) a.unknown.push({ text: `Some ${series[0].testName} results use different units, so they are not compared directly.` });
@@ -119,7 +119,7 @@ export function answerQuestion(state: AppState, profileId: ID, question: string,
   if (!a.documented.length && !a.urgent && !a.boundary) {
     const hits = searchRecords(state, q.replace(/[?.,!]/g, " ").split(/\s+/).filter((w) => w.length > 3).slice(0, 2).join(" "), [profileId]).slice(0, 5);
     for (const h of hits) a.documented.push({ text: `${h.title}${h.date ? ` (${h.date})` : ""} – ${h.subtitle}`, href: h.href, label: h.type });
-    if (!hits.length) a.unknown.push({ text: "I couldn't find anything in this profile's records that answers that. HealthOS only answers from records you've added; it won't guess." });
+    if (!hits.length) a.unknown.push({ text: "I couldn't find anything in this profile's records that answers that. MedEasy only answers from records you've added; it won't guess." });
   }
   return a;
 }

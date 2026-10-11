@@ -23,7 +23,7 @@ export default function Timeline() {
 
   return (
     <div>
-      <PageHeader title="Medical timeline" subtitle="Your documented history in date order. Each entry links to its source. Events are listed, not connected: HealthOS doesn’t infer causes." />
+      <PageHeader title="Medical timeline" subtitle="Your documented history in date order. Each entry links to its source. Events are listed, not connected: MedEasy doesn’t infer causes." />
       <Card className="mb-6 p-4">
         <div className="grid grid-cols-1 [&>*]:min-w-0 gap-3 sm:grid-cols-4">
           <Field label="Type">

@@ -16,7 +16,7 @@ export function emptyDraft(timezone: string): MedicineDraft {
 }
 
 /**
- * Medicine + schedule form. Times are always chosen by the user: HealthOS
+ * Medicine + schedule form. Times are always chosen by the user: MedEasy
  * never fills in dose times from a frequency on its own.
  */
 export function MedicineForm({ initial, onSubmit, submitLabel, asNeeded, durationHint, lockIdentity }: { initial: MedicineDraft; onSubmit: (d: MedicineDraft) => void; submitLabel: string; asNeeded?: boolean; durationHint?: string; lockIdentity?: boolean }) {
@@ -61,7 +61,7 @@ export function MedicineForm({ initial, onSubmit, submitLabel, asNeeded, duratio
           <div className="space-y-4">
             <div>
               <p className="text-sm font-medium">Dose times</p>
-              <p className="text-xs text-muted">Add each time you take this medicine. HealthOS doesn’t choose times for you.</p>
+              <p className="text-xs text-muted">Add each time you take this medicine. MedEasy doesn’t choose times for you.</p>
               <div className="mt-2 flex flex-wrap items-center gap-2">
                 {s.times.map((t, i) => (
                   <span key={i} className="inline-flex items-center gap-1 rounded-xl border border-line bg-surface pl-2">
@@ -79,13 +79,13 @@ export function MedicineForm({ initial, onSubmit, submitLabel, asNeeded, duratio
             <div>
               <p className="text-sm font-medium">Days</p>
               <div className="mt-2 flex flex-wrap gap-1.5" role="group" aria-label="Days of the week">
-                <button type="button" aria-pressed={s.weekdays.length === 0} onClick={() => setS({ weekdays: [] })} className={cx("rounded-full border px-3 py-1.5 text-sm", s.weekdays.length === 0 ? "border-pine bg-pine-soft text-pine" : "border-line")}>
+                <button type="button" aria-pressed={s.weekdays.length === 0} onClick={() => setS({ weekdays: [] })} className={cx("rounded-full border px-3 py-1.5 text-sm", s.weekdays.length === 0 ? "border-pine bg-pine-soft text-accent" : "border-line")}>
                   Every day
                 </button>
                 {DAYS.map((label, i) => {
                   const on = s.weekdays.includes(i);
                   return (
-                    <button key={label} type="button" aria-pressed={on} onClick={() => setS({ weekdays: on ? s.weekdays.filter((x) => x !== i) : [...s.weekdays, i].sort() })} className={cx("rounded-full border px-3 py-1.5 text-sm", on ? "border-pine bg-pine-soft text-pine" : "border-line")}>
+                    <button key={label} type="button" aria-pressed={on} onClick={() => setS({ weekdays: on ? s.weekdays.filter((x) => x !== i) : [...s.weekdays, i].sort() })} className={cx("rounded-full border px-3 py-1.5 text-sm", on ? "border-pine bg-pine-soft text-accent" : "border-line")}>
                       {label}
                     </button>
                   );
@@ -116,7 +116,7 @@ export function MedicineForm({ initial, onSubmit, submitLabel, asNeeded, duratio
               One-time reminder (only on the start date)
             </label>
             {durationHint && s.startDate && !s.endDate && /^(\d+) days?$/.test(durationHint) && (
-              <button type="button" className="text-sm font-medium text-pine underline underline-offset-2" onClick={() => setS({ endDate: addDays(s.startDate, Number(durationHint.split(" ")[0]) - 1) })}>
+              <button type="button" className="text-sm font-medium text-accent underline underline-offset-2" onClick={() => setS({ endDate: addDays(s.startDate, Number(durationHint.split(" ")[0]) - 1) })}>
                 Use end date from “{durationHint}” starting {s.startDate}
               </button>
             )}

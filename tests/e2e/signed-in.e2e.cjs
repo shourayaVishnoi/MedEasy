@@ -34,7 +34,7 @@ const step = (m) => console.log("•", m);
   await p.getByLabel("Confirm password").fill("Calm-River-2026-quiet");
   await p.getByRole("button", { name: "Save password and continue" }).click();
   await p.waitForURL("**/app/onboarding");
-  await p.getByText("Welcome to HealthOS").waitFor();
+  await p.getByText("Welcome to MedEasy").waitFor();
   step("onboarding");
   await p.getByRole("button", { name: "Continue" }).click();
   await p.getByLabel("First name").fill("Priya");

@@ -1,10 +1,10 @@
 {
-  "name": "HealthOS",
-  "short_name": "HealthOS",
+  "name": "MedEasy",
+  "short_name": "MedEasy",
   "description": "Your medical records, organized and easier to understand.",
   "start_url": "/app",
   "display": "standalone",
-  "background_color": "#f6f4ef",
-  "theme_color": "#1f5c4a",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
 }

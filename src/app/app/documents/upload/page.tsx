@@ -187,7 +187,7 @@ function Upload() {
         onDrop={(e) => { e.preventDefault(); setDrag(false); add(e.dataTransfer.files); }}
         className={`rounded-[1.5rem] border-2 border-dashed p-8 text-center transition ${drag ? "border-pine bg-pine-soft/50" : "border-line bg-surface"}`}
       >
-        <FileUp className="mx-auto h-9 w-9 text-pine" aria-hidden />
+        <FileUp className="mx-auto h-9 w-9 text-accent" aria-hidden />
         <p className="mt-3 font-medium">Drag files here, or choose them</p>
         <p className="mt-1 text-sm text-muted">PDF, JPEG, PNG, HEIC, DOCX or TXT · up to 20 MB each</p>
         <div className="mt-5 flex flex-wrap justify-center gap-2">
@@ -271,7 +271,7 @@ function Upload() {
           )}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="flex items-center gap-2 text-sm text-muted">
-              <ShieldCheck className="h-4 w-4 text-pine" aria-hidden /> Originals are stored unchanged before any processing.
+              <ShieldCheck className="h-4 w-4 text-accent" aria-hidden /> Originals are stored unchanged before any processing.
             </p>
             <Button onClick={processAll} disabled={busy || ready.length === 0}>
               {busy ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : <FileUp className="h-4 w-4" aria-hidden />}

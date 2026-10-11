@@ -64,7 +64,7 @@ export function PushCard() {
   let body: React.ReactNode;
   if (!cloud) body = <p>Device notifications need an account, because reminders are sent from the server. In the demo, due doses show on the Today and Medicines pages.</p>;
   else if (!VAPID) body = <p>Device notifications aren’t set up on this deployment yet. Email and SMS reminders can still be used if configured.</p>;
-  else if (st === "unsupported") body = <p>This browser doesn’t support notifications. On iPhone or iPad, add HealthOS to your Home Screen first (Share → Add to Home Screen), then open it from there.</p>;
+  else if (st === "unsupported") body = <p>This browser doesn’t support notifications. On iPhone or iPad, add MedEasy to your Home Screen first (Share → Add to Home Screen), then open it from there.</p>;
   else if (st === "blocked") body = <p>Notifications are blocked for this site in your browser settings. Allow them there, then come back.</p>;
   else
     body = (

@@ -75,7 +75,7 @@ export default function SharePage() {
             <Field label="To">{(id) => <Input id={id} type="date" value={to} onChange={(e) => setTo(e.target.value)} />}</Field>
           </div>
           <div className="flex gap-3 px-5 pt-3 text-sm">
-            <button className="font-medium text-pine underline" onClick={() => setSelected(docs.map((d) => d.id))}>
+            <button className="font-medium text-accent underline" onClick={() => setSelected(docs.map((d) => d.id))}>
               Select all shown
             </button>
             <button className="font-medium text-muted underline" onClick={() => setSelected([])}>

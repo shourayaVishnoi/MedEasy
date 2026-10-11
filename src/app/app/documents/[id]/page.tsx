@@ -35,7 +35,7 @@ export default function DocumentPage() {
   if (!doc || doc.profileId !== ws.profileId) {
     return (
       <Card>
-        <EmptyState icon={<FileWarning className="h-6 w-6" />} title="Record not available" action={<Link href="/app/documents" className="font-medium text-pine underline">Back to records</Link>}>
+        <EmptyState icon={<FileWarning className="h-6 w-6" />} title="Record not available" action={<Link href="/app/documents" className="font-medium text-accent underline">Back to records</Link>}>
           This record doesn’t exist, was deleted, or belongs to a profile you’re not currently viewing.
         </EmptyState>
       </Card>
@@ -144,7 +144,7 @@ export default function DocumentPage() {
         ) : (
           <Card>
             <EmptyState icon={<FileWarning className="h-6 w-6" />} title="Nothing to explain yet">
-              No results were found in this document’s text. HealthOS won’t guess. You can enter the text above or check the original.
+              No results were found in this document’s text. MedEasy won’t guess. You can enter the text above or check the original.
             </EmptyState>
           </Card>
         ))}
@@ -265,7 +265,7 @@ function OriginalView({ doc, highlight }: { doc: MedicalDocument; highlight?: st
           <p className="text-sm text-muted">No text has been read from this document.</p>
         )}
         <p className="mt-4 flex items-center gap-1.5 text-xs text-muted">
-          <ShieldCheck className="h-3.5 w-3.5 text-pine" aria-hidden /> The original is kept unchanged. Extracted text never replaces it.
+          <ShieldCheck className="h-3.5 w-3.5 text-accent" aria-hidden /> The original is kept unchanged. Extracted text never replaces it.
         </p>
       </Card>
     </div>

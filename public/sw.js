@@ -32,8 +32,8 @@ self.addEventListener("push", (e) => {
     data = e.data ? e.data.json() : {};
   } catch {}
   e.waitUntil(
-    self.registration.showNotification(data.title || "HealthOS reminder", {
-      body: data.body || "You have a scheduled dose now. Open HealthOS to record it.",
+    self.registration.showNotification(data.title || "MedEasy reminder", {
+      body: data.body || "You have a scheduled dose now. Open MedEasy to record it.",
       icon: "/icon.svg",
       badge: "/icon.svg",
       tag: data.tag || "healthos-reminder",

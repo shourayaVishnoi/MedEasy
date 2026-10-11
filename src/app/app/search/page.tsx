@@ -123,7 +123,7 @@ function Search() {
               return (
                 <li key={`${r.type}-${r.id}`}>
                   <Link href={r.href} className="flex gap-3 rounded-2xl border border-line bg-surface px-4 py-3 transition hover:border-pine/40 focus-visible:border-pine">
-                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-pine" aria-hidden />
+                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-accent" aria-hidden />
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         <p className="font-medium">{r.title}</p>

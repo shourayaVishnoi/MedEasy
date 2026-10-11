@@ -25,7 +25,7 @@ async function sendPush(subs: PushTarget[]): Promise<DeliveryResult> {
   if (!pushConfigured()) return { ok: false, error: "Browser push not configured" };
   if (!subs.length) return { ok: false, error: "No device has notifications turned on" };
   webpush.setVapidDetails(process.env.VAPID_SUBJECT || `mailto:${process.env.EMAIL_FROM?.match(/<(.+)>/)?.[1] ?? "admin@example.com"}`, process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!, process.env.VAPID_PRIVATE_KEY!);
-  const payload = JSON.stringify({ title: "HealthOS reminder", body: "You have a scheduled dose now. Open HealthOS to record it.", url: "/app/medicines" });
+  const payload = JSON.stringify({ title: "MedEasy reminder", body: "You have a scheduled dose now. Open MedEasy to record it.", url: "/app/medicines" });
   let delivered = 0;
   const expiredEndpoints: string[] = [];
   for (const s of subs) {
@@ -41,7 +41,7 @@ async function sendPush(subs: PushTarget[]): Promise<DeliveryResult> {
 }
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "";
-const TEXT = `HealthOS reminder: you have a scheduled medicine dose now. Open ${APP_URL}/app/medicines to record it.`;
+const TEXT = `MedEasy reminder: you have a scheduled medicine dose now. Open ${APP_URL}/app/medicines to record it.`;
 
 export async function deliver(channel: Channel, to: { email?: string | null; phone?: string | null; push?: PushTarget[] }): Promise<DeliveryResult> {
   try {
@@ -51,7 +51,7 @@ export async function deliver(channel: Channel, to: { email?: string | null; pho
       const r = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { authorization: `Bearer ${process.env.RESEND_API_KEY}`, "content-type": "application/json" },
-        body: JSON.stringify({ from: process.env.EMAIL_FROM, to: [to.email], subject: "HealthOS reminder", text: TEXT }),
+        body: JSON.stringify({ from: process.env.EMAIL_FROM, to: [to.email], subject: "MedEasy reminder", text: TEXT }),
         signal: AbortSignal.timeout(10_000),
       });
       return r.ok ? { ok: true } : { ok: false, error: `Email provider returned ${r.status}` };

@@ -78,7 +78,7 @@ export default function Documents() {
               <li key={d.id}>
                 <Link href={`/app/documents/${d.id}`} className="group block h-full rounded-[var(--radius-card)] border border-line bg-surface p-4 shadow-[var(--shadow-card)] transition hover:border-pine/40">
                   <div className="flex items-start gap-3">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sunken text-pine">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sunken text-accent">
                       <FileText className="h-5 w-5" aria-hidden />
                     </span>
                     <div className="min-w-0 flex-1">
@@ -105,7 +105,7 @@ export default function Documents() {
       )}
       {docs.length > limit && (
         <div className="mt-5 text-center">
-          <button className="text-sm font-medium text-pine underline underline-offset-2" onClick={() => setLimit((l) => l + PAGE)}>
+          <button className="text-sm font-medium text-accent underline underline-offset-2" onClick={() => setLimit((l) => l + PAGE)}>
             Show more ({docs.length - limit} remaining)
           </button>
         </div>
@@ -116,7 +116,7 @@ export default function Documents() {
 
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
-    <button aria-pressed={active} onClick={onClick} className={`rounded-full border px-3 py-1.5 text-sm font-medium transition ${active ? "border-pine bg-pine text-white dark:text-[#0f1714]" : "border-line bg-surface text-ink-2 hover:bg-sunken"}`}>
+    <button aria-pressed={active} onClick={onClick} className={`rounded-full border px-3 py-1.5 text-sm font-medium transition ${active ? "border-pine bg-pine text-on-pine" : "border-line bg-surface text-ink-2 hover:bg-sunken"}`}>
       {children}
     </button>
   );
