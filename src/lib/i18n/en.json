@@ -1,0 +1,11 @@
+{
+  "nav.today": "Today",
+  "nav.records": "Records",
+  "nav.medicines": "Medicines",
+  "nav.assistant": "Assistant",
+  "dose.taken": "Taken",
+  "dose.skipped": "Skipped",
+  "dose.unconfirmed": "Unconfirmed",
+  "dose.notRecorded": "Not recorded",
+  "greeting.morning": "Good morning, {name}"
+}

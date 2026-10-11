@@ -1,0 +1,11 @@
+{
+  "nav.today": "आज",
+  "nav.records": "रिकॉर्ड",
+  "nav.medicines": "दवाइयाँ",
+  "nav.assistant": "सहायक",
+  "dose.taken": "ली गई",
+  "dose.skipped": "छोड़ी गई",
+  "dose.unconfirmed": "पुष्टि नहीं",
+  "dose.notRecorded": "दर्ज नहीं",
+  "greeting.morning": "सुप्रभात, {name}"
+}

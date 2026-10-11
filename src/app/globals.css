@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --color-paper: #f6f4ef;
+  --color-surface: #ffffff;
+  --color-sunken: #efece5;
+  --color-line: #e3ded3;
+  --color-ink: #1b2622;
+  --color-ink-2: #44524d;
+  --color-muted: #66736e;
+
+  --color-pine: #1f5c4a;
+  --color-pine-strong: #174536;
+  --color-pine-soft: #e2eee8;
+
+  --color-ok: #1f7a46;
+  --color-ok-soft: #e4f3ea;
+  --color-warn: #8a4f06;
+  --color-warn-soft: #fcf1dc;
+  --color-danger: #a8261b;
+  --color-danger-soft: #fbe9e6;
+  --color-info: #2f5a7a;
+  --color-info-soft: #e5eef5;
+
+  --radius-card: 1.125rem;
+  --shadow-card: 0 1px 2px rgb(27 38 34 / 0.04), 0 4px 16px -6px rgb(27 38 34 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #121816;
+    --color-surface: #1a2220;
+    --color-sunken: #151c1a;
+    --color-line: #2b3633;
+    --color-ink: #e8eeeb;
+    --color-ink-2: #c1ccc7;
+    --color-muted: #94a39d;
+    --color-pine: #7cc4a8;
+    --color-pine-strong: #9bd6be;
+    --color-pine-soft: #1f3a31;
+    --color-ok: #7fd1a0;
+    --color-ok-soft: #173326;
+    --color-warn: #f0c27a;
+    --color-warn-soft: #3a2c12;
+    --color-danger: #f2a199;
+    --color-danger-soft: #3d1c18;
+    --color-info: #9cc2e0;
+    --color-info-soft: #1a2c3a;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-feature-settings: "cv11", "ss01";
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--color-pine) 70%, transparent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-rise { animation: rise 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--color-sunken) 25%, var(--color-line) 50%, var(--color-sunken) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 0.5rem;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+}
