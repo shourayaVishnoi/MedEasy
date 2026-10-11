@@ -33,9 +33,11 @@ browser-only demo.
 2. Add environment variables from `.env.example` under *Settings → Environment Variables* (Production and Preview).
    Set `NEXT_PUBLIC_APP_URL` to the deployed URL.
 3. Deploy. `/api/health` returns which features are configured (booleans only, never values).
-4. **Cron:** `vercel.json` schedules `/api/cron/reminders` every 5 minutes. Set `CRON_SECRET`;
-   Vercel sends it as a bearer token. Sub-daily crons need a Vercel **Pro** plan; on Hobby,
-   change the schedule to daily or call the endpoint from another scheduler with the same header.
+4. **Cron:** `vercel.json` schedules `/api/cron/reminders` once a day (08:00 UTC), because the
+   free Hobby plan rejects anything more frequent. Set `CRON_SECRET`; Vercel sends it as a bearer
+   token. For timely dose reminders, call the endpoint every 5 minutes from a free scheduler such
+   as cron-job.org (GET, header `Authorization: Bearer <CRON_SECRET>`), or upgrade to Vercel Pro
+   and set the schedule back to `*/5 * * * *`.
 
 ## 3. Optional services
 
