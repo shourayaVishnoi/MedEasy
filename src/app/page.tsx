@@ -3,6 +3,7 @@ import { ChevronRight, BellRing, CalendarClock, FileSearch, FileText, HeartHands
 import { Logo } from "@/components/Logo";
 import { buttonClass } from "@/components/buttonClass";
 import { BRAND } from "@/lib/brand";
+import { DnaHelix, EcgLine, FloatingMeds, IntroSplash } from "@/components/MedicalArt";
 
 
 const POSTERS = [
@@ -28,6 +29,7 @@ const FAQ = [
 export default function Landing() {
   return (
     <div className="min-h-dvh bg-black">
+      <IntroSplash name={BRAND.name} />
       <section className="relative isolate min-h-[42rem] overflow-hidden sm:min-h-[46rem]">
         <div aria-hidden className="absolute inset-0 -z-10">
           <div className="absolute left-1/2 top-1/2 grid w-[150%] -translate-x-1/2 -translate-y-1/2 -rotate-[8deg] grid-cols-3 gap-3 opacity-55 sm:w-[120%] sm:grid-cols-5 lg:grid-cols-6">
@@ -43,6 +45,8 @@ export default function Landing() {
           </div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(0_0_0/0.55),rgb(0_0_0/0.92)_70%)]" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black" />
+          <FloatingMeds className="hidden sm:block" />
+          <EcgLine beats={8} className="absolute inset-x-0 bottom-2 h-16 w-full text-pine opacity-70 sm:bottom-16 sm:h-20" />
         </div>
 
         <header className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-8 lg:px-12">
@@ -103,7 +107,7 @@ export default function Landing() {
                 <div key={t} className="mt-3 flex items-center gap-3 rounded-md bg-raised px-4 py-3 first:mt-0">
                   <span className="w-12 font-display text-sm font-bold tabular-nums text-ink-2">{t}</span>
                   <span className="min-w-0 flex-1 truncate text-sm font-semibold">{n}</span>
-                  <span className={`rounded px-2 py-0.5 text-xs font-bold ${c}`}>{s}</span>
+                  <span className={`rounded px-2 py-0.5 text-xs font-bold ${c} ${s === "Due now" ? "pulse-ring" : ""}`}>{s}</span>
                 </div>
               ))}
             </div>
@@ -127,6 +131,8 @@ export default function Landing() {
           title: "Careful with what matters.",
           body: "Answers are grounded in your own documents and cite their source. Private storage, strict access, audit logs, and no medical data used for ads.",
           art: (
+            <div>
+            <DnaHelix className="mb-6" />
             <ul className="space-y-4 text-left">
               {[[FileSearch, "Grounded in your documents"], [HeartHandshake, "Never decides your treatment"], [Lock, "Private by default"]].map(([Icon, t]) => {
                 const I = Icon as typeof Lock;
@@ -138,23 +144,24 @@ export default function Landing() {
                 );
               })}
             </ul>
+            </div>
           ),
         },
       ].map((f, i) => (
-        <section key={f.title} className="border-t-8 border-[#232323]">
+        <section key={f.title} className="overflow-hidden border-t-8 border-[#232323]">
           <div className={`mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-16`}>
-            <div className={`text-center lg:text-left ${i % 2 ? "lg:order-2" : ""}`}>
+            <div className={`reveal text-center lg:text-left ${i % 2 ? "lg:order-2" : ""}`}>
               <h2 className="font-display text-[2rem] font-bold leading-tight tracking-tight sm:text-5xl">{f.title}</h2>
               <p className="mt-4 text-lg text-ink-2 sm:text-xl">{f.body}</p>
             </div>
-            <div className="min-w-0">{f.art}</div>
+            <div className="reveal min-w-0">{f.art}</div>
           </div>
         </section>
       ))}
 
       <section className="border-t-8 border-[#232323]">
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-8 sm:py-20">
-          <h2 className="text-center font-display text-[2rem] font-bold tracking-tight sm:text-5xl">Frequently asked questions</h2>
+          <h2 className="reveal text-center font-display text-[2rem] font-bold tracking-tight sm:text-5xl">Frequently asked questions</h2>
           <div className="mt-8 space-y-2">
             {FAQ.map(([q, a]) => (
               <details key={q} className="group bg-raised">

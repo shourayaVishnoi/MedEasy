@@ -38,6 +38,7 @@ export function DoseList({ state, occurrences, now, compact }: { state: AppState
               <div className="min-w-0 flex-1">
                 <p className="mb-0.5 font-display text-xs font-bold tabular-nums text-accent sm:hidden">{formatClock(o.time, state.settings.locale)}</p>
                 <p className="line-clamp-2 font-semibold leading-snug sm:truncate">
+                  {st === "due" && <span aria-hidden className="pulse-ring mr-2 inline-block h-2 w-2 rounded-full bg-pine align-middle" />}
                   {med.name}
                   {med.strength && <span className="font-normal text-muted"> {med.strength}</span>}
                 </p>

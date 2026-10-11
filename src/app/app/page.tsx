@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, CalendarPlus, Camera, Check, ClipboardList, FilePlus2, FileText, FlaskConical, History, Info, MapPin, MessageSquareText, Pill, PillBottle } from "lucide-react";
+import { AlertTriangle, HeartPulse, CalendarPlus, Camera, Check, ClipboardList, FilePlus2, FileText, FlaskConical, History, Info, MapPin, MessageSquareText, Pill, PillBottle } from "lucide-react";
 import { useNow, useWorkspace } from "@/lib/hooks";
 import { occurrencesOn, occurrenceState } from "@/lib/meds/schedule";
 import { DoseList } from "@/components/DoseList";
 import { Badge, Button, ButtonLink, Card, Callout, EmptyState, LoadingPage, toast } from "@/components/ui";
 import { Row, Tile } from "@/components/Rows";
+import { EcgLine, FloatingMeds } from "@/components/MedicalArt";
 import { logDose } from "@/lib/actions";
 import { addDays, formatClock, formatDate, todayIn } from "@/lib/util";
 import { relationToInterval } from "@/lib/reports/compare";
@@ -69,7 +70,9 @@ export default function Dashboard() {
           <div className="absolute inset-0 bg-[radial-gradient(70rem_36rem_at_80%_10%,rgb(229_9_20/0.38),transparent_60%),radial-gradient(40rem_30rem_at_10%_90%,rgb(229_9_20/0.12),transparent_60%)]" />
           <div className="grid-bg absolute inset-0 opacity-60" />
           <p className="absolute -right-6 top-16 select-none font-brand text-[11rem] leading-none text-white/[0.04] sm:text-[16rem] lg:top-10 lg:text-[22rem]">TODAY</p>
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-paper to-transparent" />
+          <FloatingMeds className="left-1/2 hidden opacity-50 lg:block" />
+          <EcgLine beats={7} speed={4} className="absolute inset-x-0 bottom-10 h-16 w-full text-pine opacity-60" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-paper to-transparent" />
         </div>
         <div className="max-w-2xl animate-rise">
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-ink-2">
@@ -80,7 +83,8 @@ export default function Dashboard() {
           <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.95rem] font-medium text-ink-2">
             {todays.length ? (
               <>
-                <span className="font-bold text-ok">
+                <span className="inline-flex items-center gap-1.5 font-bold text-ok">
+                  <HeartPulse className="heartbeat h-4 w-4" aria-hidden />
                   {takenCount}/{todays.length} doses taken
                 </span>
                 <span aria-hidden className="text-muted">•</span>
@@ -96,7 +100,7 @@ export default function Dashboard() {
           </p>
           {todays.length > 0 && (
             <div className="mt-4 h-1 w-full max-w-sm overflow-hidden rounded-full bg-white/15" role="progressbar" aria-label="Doses recorded as taken today" aria-valuemin={0} aria-valuemax={todays.length} aria-valuenow={takenCount}>
-              <div className="h-full rounded-full bg-pine transition-[width] duration-700" style={{ width: `${(takenCount / todays.length) * 100}%` }} />
+              <div className="bar-shine h-full rounded-full bg-pine transition-[width] duration-700" style={{ width: `${(takenCount / todays.length) * 100}%` }} />
             </div>
           )}
           {next && nextMed ? (

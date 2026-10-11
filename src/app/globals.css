@@ -105,3 +105,92 @@ body {
   .no-print { display: none !important; }
   body { background: white; color: black; }
 }
+
+/* ---------- Medical motion ---------- */
+.ecg-sweep {
+  stroke-dasharray: 160 840;
+  animation: ecg-sweep 3.2s linear infinite;
+}
+@keyframes ecg-sweep {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.float-med { animation: float-med 9s ease-in-out infinite; }
+@keyframes float-med {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33% { transform: translate3d(8px, -18px, 0) rotate(6deg); }
+  66% { transform: translate3d(-6px, 10px, 0) rotate(-5deg); }
+}
+
+.dna-rung > * { animation-duration: 2.8s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
+.dna-a { animation-name: dna-a; }
+.dna-b { animation-name: dna-b; }
+.dna-line { animation-name: dna-line; }
+@keyframes dna-a {
+  0%, 100% { top: 10%; transform: scale(1); opacity: 1; }
+  50% { top: 85%; transform: scale(0.55); opacity: 0.5; }
+}
+@keyframes dna-b {
+  0%, 100% { top: 85%; transform: scale(0.55); opacity: 0.5; }
+  50% { top: 10%; transform: scale(1); opacity: 1; }
+}
+@keyframes dna-line {
+  0%, 100% { top: 14%; height: 72%; }
+  25%, 75% { top: 47%; height: 6%; }
+  50% { top: 14%; height: 72%; }
+}
+
+.heartbeat { animation: heartbeat 1.4s ease-in-out infinite; transform-origin: center; }
+@keyframes heartbeat {
+  0%, 40%, 100% { transform: scale(1); }
+  10% { transform: scale(1.25); }
+  20% { transform: scale(0.95); }
+  30% { transform: scale(1.15); }
+}
+
+.pulse-ring { position: relative; }
+.pulse-ring::after {
+  content: ""; position: absolute; inset: -4px; border-radius: inherit;
+  border: 2px solid var(--color-pine); animation: pulse-ring 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+@keyframes pulse-ring {
+  from { opacity: 0.8; transform: scale(0.9); }
+  to { opacity: 0; transform: scale(1.35); }
+}
+
+.bar-shine { position: relative; overflow: hidden; }
+.bar-shine::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.55), transparent);
+  transform: translateX(-100%); animation: bar-shine 2.4s ease-in-out infinite 1s;
+}
+@keyframes bar-shine { to { transform: translateX(100%); } }
+
+/* Intro: ~1.9s, then gone. */
+.intro-splash { animation: intro-out 0.5s ease-in 1.5s forwards; }
+.intro-ecg path:last-child { animation-iteration-count: 1 !important; stroke-dasharray: 1000 1000; animation-name: intro-draw !important; }
+@keyframes intro-draw { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+.intro-word { animation: intro-word 1.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes intro-word {
+  0% { opacity: 0; transform: scale(0.6); letter-spacing: 0.4em; filter: blur(8px); }
+  45% { opacity: 1; transform: scale(1); letter-spacing: 0.04em; filter: blur(0); }
+  80% { transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1.4); }
+}
+@keyframes intro-out { to { opacity: 0; visibility: hidden; } }
+
+/* Scroll reveal where the browser supports scroll-driven animations; content is always visible otherwise. */
+@supports (animation-timeline: view()) {
+  .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(48px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .float-med, .heartbeat, .dna-rung > *, .bar-shine::after, .pulse-ring::after, .intro-word { animation: none !important; }
+  .ecg-sweep { animation: none !important; stroke-dasharray: none; }
+  .intro-splash { display: none; }
+}
