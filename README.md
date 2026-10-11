@@ -1,10 +1,10 @@
-# HealthOS
+# MedEasy
 
 A calm, private place for personal medical records: lab reports, prescriptions,
 medicines, reminders and appointments, with plain-language explanations that are
-grounded in the user's own documents. Built from the *HealthOS Master Build Prompt*.
+grounded in the user's own documents. Built from the *MedEasy Master Build Prompt*.
 
-> HealthOS helps people organize and understand their information. It is **not a
+> MedEasy helps people organize and understand their information. It is **not a
 > medical device**, does not diagnose, and never starts, stops or changes a medicine.
 
 ## Try it in 1 minute

@@ -141,7 +141,9 @@ export default function Dashboard() {
                         <Badge tone={p.tone}>{p.tone === "danger" ? "Failed" : "To review"}</Badge>
                       </span>
                     </div>
-                    <p className="line-clamp-2 flex-1 px-3.5 py-3 text-sm font-medium leading-snug">{p.text}</p>
+                    <div className="flex-1 px-3.5 py-3">
+                      <p className="line-clamp-2 text-sm font-medium leading-snug">{p.text}</p>
+                    </div>
                     <div className="h-1 bg-white/10" aria-hidden>
                       <div className="h-full w-1/3 bg-pine" />
                     </div>

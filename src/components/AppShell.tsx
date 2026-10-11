@@ -107,8 +107,12 @@ export function AppShell({ ws, children }: { ws: Workspace; children: ReactNode 
       <header className={cx("no-print fixed inset-x-0 top-0 z-30 transition-colors duration-300", solid ? "bg-black/95 shadow-[0_1px_0_rgb(255_255_255/0.06)] backdrop-blur" : "bg-gradient-to-b from-black/90 via-black/50 to-transparent")}>
         <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-4 px-4 sm:px-8 lg:h-[4.25rem] lg:gap-8 lg:px-12">
           <Link href="/app" aria-label="Today">
-            <Logo className="hidden sm:inline-flex" />
-            <Logo compact className="sm:hidden" />
+            <span className="hidden sm:inline">
+              <Logo />
+            </span>
+            <span className="sm:hidden">
+              <Logo compact />
+            </span>
           </Link>
           <nav aria-label="Main" className="hidden min-w-0 items-center gap-5 xl:flex">
             {NAV.slice(0, 7).map((n) => (

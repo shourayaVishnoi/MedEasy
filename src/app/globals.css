@@ -88,7 +88,7 @@ body {
 .text-glow { text-shadow: 0 2px 24px rgb(0 0 0 / 0.6); }
 ::selection { background: rgb(229 9 20 / 0.45); }
 /* Netflix-style horizontal rows */
-.row-scroll { display: grid; grid-auto-flow: column; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 0.5rem; }
+.row-scroll { display: grid; grid-auto-flow: column; grid-auto-columns: max-content; justify-content: start; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 0.5rem; }
 .row-scroll::-webkit-scrollbar { display: none; }
 .row-scroll > * { scroll-snap-align: start; }
 .tile { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s, border-color 0.25s; }

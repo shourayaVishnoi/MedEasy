@@ -1,6 +1,6 @@
-# Deploying HealthOS
+# Deploying MedEasy
 
-HealthOS runs on **Vercel** with **Supabase** for auth, database and private file
+MedEasy runs on **Vercel** with **Supabase** for auth, database and private file
 storage. Every external service is optional: without any keys the site runs the
 browser-only demo.
 
@@ -19,7 +19,7 @@ browser-only demo.
    `https://<your-domain>/auth/callback` (plus `http://localhost:3000/auth/callback` for development) to *Redirect URLs*.
 5. **Phone OTP:** *Auth → Providers → Phone*: enable it and connect an SMS
    provider (Twilio, MessageBird, Vonage or Textlocal). Supabase sends the codes;
-   HealthOS enforces a 60 s resend cooldown and attempt limits in the UI. Set rate
+   MedEasy enforces a 60 s resend cooldown and attempt limits in the UI. Set rate
    limits under *Auth → Rate Limits*.
 6. **Google:** create an OAuth client in Google Cloud Console (type *Web*), add the
    Supabase callback `https://<project-ref>.supabase.co/auth/v1/callback` as an
@@ -47,7 +47,7 @@ browser-only demo.
 | Browser push reminders | `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | Generate keys once with `npx web-push generate-vapid-keys`. Users turn notifications on per device in *Settings*. On iPhone/iPad, push works only after adding the site to the Home Screen. |
 | Email reminders | `RESEND_API_KEY`, `EMAIL_FROM` | Verify the sending domain in Resend. Messages contain no medicine names or health details. |
 | SMS reminders | `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM_NUMBER` | Register the sender as your country requires (e.g. DLT in India, 10DLC in the US). |
-| Brand | `NEXT_PUBLIC_BRAND_NAME` | Defaults to "HealthOS". |
+| Brand | `NEXT_PUBLIC_BRAND_NAME` | Defaults to "MedEasy". |
 
 ## 4. After deploying
 
